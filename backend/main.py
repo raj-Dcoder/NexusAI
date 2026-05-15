@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 import shutil
 from services.pdf_service import extract_text_from_pdf
 from services.rag_service import process_text
+from services.chat_service import ask_question
 
 app = FastAPI()
 
@@ -28,3 +29,10 @@ async def upload_pdf(file: UploadFile = File(...)):
         "chunk_created": len(chunks),
         "preview_chunk": chunks[0]
     }
+
+@app.post("/ask")
+async def ask_pdf(question: str):
+
+    response = ask_question(question)
+
+    return response
