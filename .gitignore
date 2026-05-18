@@ -20,3 +20,6 @@ chroma/
 # OS files
 .DS_Store
 Thumbs.db
+
+#node modules
+frontend/node_modules/

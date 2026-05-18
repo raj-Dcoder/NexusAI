@@ -18,6 +18,11 @@ embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 # This acts as our vector database
 chroma_client = chromadb.Client()
 
+try:
+    chroma_client.delete_collection("pdf_data")
+except:
+    pass
+
 # Create collection inside vector DB
 collection = chroma_client.get_or_create_collection(name="pdf_documents")
 
