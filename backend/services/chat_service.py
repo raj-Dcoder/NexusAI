@@ -29,7 +29,7 @@ def ask_question(question):
     # Search vector DB for similar chunks
     results = collection.query(
         query_embeddings=[question_embedding.tolist()],
-        n_results=3
+        n_results=5
     )
 
     # Extract retrieved chunks
@@ -41,18 +41,23 @@ def ask_question(question):
     # Prompt engineering
     # Force model to answer only from retrieved context
     prompt = f"""
-    You are an AI assistant.
 
-    Answer ONLY from the provided context.
+        You are an AI assistant helping users understand documents.
 
-    If answer is not present in context, say:
-    "I could not find relevant information in the document."
+        Use the provided context to answer the question clearly and accurately.
 
-    Context:
-    {context}
+        If the context partially contains the answer,
+        explain using the available information.
 
-    Question:
-    {question}
+        If the answer truly does not exist in the context,
+        say that politely.
+
+        Context:
+        {context}
+
+        Question:
+        {question}
+
     """
 
     try:

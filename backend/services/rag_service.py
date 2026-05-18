@@ -6,8 +6,8 @@ import chromadb
 # Create text splitter object
 # This breaks large text into smaller chunks
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500,       # max characters per chunk
-    chunk_overlap=50      # overlap helps preserve context
+    chunk_size=1000,       # max characters per chunk
+    chunk_overlap=200      # overlap helps preserve context
 )
 
 # Load embedding model
